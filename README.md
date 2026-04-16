@@ -57,3 +57,25 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# Funcionalidades principales
+
+- 📊 Tabla reutilizable con Angular Material
+- 🔍 Búsqueda en tiempo real por nombre
+- 👁️ Detalle de trabajador con Routing
+- ➕ Creación de trabajador mediante Dialog
+- 🧾 Reactive Forms con validaciones
+- 🔄 Estado reactivo con RxJS (BehaviorSubject)
+- 🎯 Consumo de API REST
+- ⚙️ Componentes standalone
+
+---
+
+# Tecnologías usadas
+
+- Angular 21
+- Angular Material
+- RxJS
+- Reactive Forms
+- TypeScript
+- SCSS
