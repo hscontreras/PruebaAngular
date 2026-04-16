@@ -1,0 +1,57 @@
+<button mat-icon-button (click)="goBack()" class="back-btn">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+@if (worker$ | async; as worker) {
+  <div class="profile-container">
+    <mat-card class="profile-card">
+      <!-- HEADER PERFIL -->
+      <div class="profile-header">
+        <div
+          class="avatar"
+          matTooltip="{{ worker.name }} {{ worker.lastName }}"
+          matTooltipPosition="above"
+        >
+          {{ worker.name[0] }}{{ worker.lastName[0] }}
+        </div>
+
+        <div class="header-info">
+          <h2 matTooltip="Nombre Completo" matTooltipPosition="above">
+            {{ worker.name }} {{ worker.lastName }}
+          </h2>
+          <p matTooltip="Cargo" matTooltipPosition="above">{{ worker.position }}</p>
+
+          <mat-chip
+            matTooltip="Estado"
+            matTooltipPosition="above"
+            [ngClass]="worker.status ? 'active' : 'inactive'"
+          >
+            {{ worker.status ? 'Activo' : 'Inactivo' }}
+          </mat-chip>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- INFO -->
+      <div class="profile-body">
+        <div class="info-row">
+          <mat-icon>mail</mat-icon>
+          <span matTooltip="Correo Electrónico" matTooltipPosition="above">{{ worker.email }}</span>
+        </div>
+
+        <div class="info-row">
+          <mat-icon>event</mat-icon>
+          <span matTooltip="Fecha de Ingreso" matTooltipPosition="above">{{
+            worker.startDate | date: 'dd/MM/yyyy'
+          }}</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+} @else {
+  <div class="loading">
+    <mat-icon class="spin">autorenew</mat-icon>
+    <p>Cargando trabajador...</p>
+  </div>
+}

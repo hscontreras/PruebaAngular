@@ -1,0 +1,22 @@
+<div class="header">
+  <h2>Trabajadores</h2>
+
+  <button mat-raised-button color="primary" (click)="openCreate('3000ms', '1500ms')">
+    <mat-icon>add</mat-icon>
+    Crear trabajador
+  </button>
+</div>
+
+<div class="search">
+  <mat-form-field appearance="outline">
+    <mat-label>Buscar trabajador</mat-label>
+    <input matInput [formControl]="searchControl" />
+  </mat-form-field>
+</div>
+
+<app-table
+  [columns]="columns"
+  [data]="(filteredWorkers$ | async) || []"
+  (view)="goToDetail($event)"
+>
+</app-table>

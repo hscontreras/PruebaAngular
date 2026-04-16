@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>
+  {{ isViewMode ? 'Detalle trabajador' : 'Crear trabajador' }}
+</h2>
+
+<form [formGroup]="form" mat-dialog-content class="dialog-form">
+  <div class="grid">
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+        El nombre es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="lastName" />
+      <mat-error
+        *ngIf="form.get('lastName')?.hasError('required') && form.get('lastName')?.touched"
+      >
+        El apellido es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Cargo</mat-label>
+      <input matInput formControlName="position" />
+      <mat-error
+        *ngIf="form.get('position')?.hasError('required') && form.get('position')?.touched"
+      >
+        El cargo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Correo</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+        El correo es obligatorio
+      </mat-error>
+
+      <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+        El correo no es válido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-12">
+      <mat-label>Fecha de ingreso</mat-label>
+
+      <input matInput [matDatepicker]="picker" formControlName="startDate" />
+
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error
+        *ngIf="form.get('startDate')?.hasError('required') && form.get('startDate')?.touched"
+      >
+        La fecha es obligatoria
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="isViewMode" class="status">
+    <strong>Estado:</strong>
+    {{ form.value.status ? 'Activo' : 'Inactivo' }}
+  </div>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+
+  <button
+    *ngIf="!isViewMode"
+    mat-raised-button
+    color="primary"
+    (click)="save()"
+    [disabled]="form.invalid"
+  >
+    Guardar
+  </button>
+</div>
