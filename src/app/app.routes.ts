@@ -1,8 +1,13 @@
 import { Routes } from '@angular/router';
-import { WorkerListComponent } from './features/workers/pages/worker-list/worker-list';
-import { WorkerDetailComponent } from './features/workers/pages/worker-detail/worker-detail';
 
 export const routes: Routes = [
-  { path: '', component: WorkerListComponent },
-  { path: 'workers/:id', component: WorkerDetailComponent },
+  {
+    path: '',
+    redirectTo: 'workers',
+    pathMatch: 'full',
+  },
+  {
+    path: 'workers',
+    loadChildren: () => import('./features/workers/workers.routes').then((m) => m.WORKERS_ROUTES),
+  },
 ];
